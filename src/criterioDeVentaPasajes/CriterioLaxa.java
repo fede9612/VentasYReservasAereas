@@ -5,7 +5,7 @@ import vuelos.Vuelo;
 public class CriterioLaxa extends Criterio{
 
 	@Override
-	public boolean getPuedeVenerPasajes(Vuelo vuelo) {
+	public boolean getPuedeVenderPasajes(Vuelo vuelo) {
 		return (vuelo.getCantDeAsientosLibres() + 10) >= 1;
 	}
 

@@ -1,5 +1,9 @@
 package pasaje;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import ventaDelPasaje.Pago;
 import vuelos.Vuelo;
 
 public class Pasaje {
