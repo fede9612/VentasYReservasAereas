@@ -5,6 +5,7 @@ public class Avion {
 	private int cantAsientos;
 	private double alturaDeCabina;
 	private double peso;
+	private double consumo;
 
 	public Avion(int asientos, double alturaCabina){
 		this.cantAsientos = asientos;
@@ -25,6 +26,14 @@ public class Avion {
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+
+	public double getConsumoNafta() {
+		return this.consumo;
+	}
+
+	public void setConsumo(double consumo) {
+		this.consumo = consumo;
 	}
 	
 }

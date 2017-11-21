@@ -1,12 +1,12 @@
 package vuelos;
 
+import asociacionInternacionalTransporteAereo.IATA;
 import avion.Avion;
-import criterioDeVentaPasajes.Criterio;
+import empresa.Empresa;
 
 public class VueloDeCarga extends Vuelo{
 	
 	private static int cantDeAsientosLibres = 30;
-	private double pesoDeCarga;
 
 	public VueloDeCarga(Avion avion){
 		super(avion);
@@ -30,16 +30,18 @@ public class VueloDeCarga extends Vuelo{
 	}
 
 	public double getPesoDeCarga() {
-		return pesoDeCarga;
+		return this.getCantDeAsientosOcupados() * Empresa.empresaUnica().getPesoMaximoDeCargaPorPersona();
 	}
 
-	public void setPesoDeCarga(double pesoDeCarga) {
-		this.pesoDeCarga = pesoDeCarga;
-	}
 
 	@Override
 	public double getPesoDeLosPasajeros() {
-		return 0;
+		return this.getCantDeAsientosOcupados() * IATA.iata().getPesoStandarPersona();
+	}
+
+	@Override
+	public int getCantAsientos() {
+		return this.cantDeAsientosLibres;
 	}
 
 }

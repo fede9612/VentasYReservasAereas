@@ -42,16 +42,24 @@ public class TestPoliticaPreciosDeVuelo {
 	public void tiene30PorcientoDelPrecioStandar2000PorSerAnticipada(){
 		vueloNormal.setPoliticaDePrecio(new PoliticaVentaAnticipada(2000));
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(33);
+		//pasaje.setAgregarPasajesAlVuelo(33);
+		this.setPasajesAlVuelo(vueloNormal, 33);
 		
 		assertEquals(1400,vueloNormal.getPrecio(),0.1);
+	}
+	
+	private void setPasajesAlVuelo(Vuelo vuelo, int n) {
+		for(int i=1;i<n;i++){
+			vuelo.setCantDePasajesVendidos();
+		}
 	}
 	
 	@Test
 	public void tiene60PorcientoDelPrecioStandarPorSerAnticipada(){
 		vueloNormal.setPoliticaDePrecio(new PoliticaVentaAnticipada(2000));
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(55);
+		//pasaje.setAgregarPasajesAlVuelo(55);
+		this.setPasajesAlVuelo(vueloNormal, 55);
 		
 		assertEquals(800, vueloNormal.getPrecio(),0.1);
 	}
@@ -60,7 +68,8 @@ public class TestPoliticaPreciosDeVuelo {
 	public void noTieneDescuentoVentaAnticipadaPor15PasajesVendidos(){
 		vueloNormal.setPoliticaDePrecio(new PoliticaVentaAnticipada(2000));
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(80);
+		//pasaje.setAgregarPasajesAlVuelo(80);
+		this.setPasajesAlVuelo(vueloNormal, 80);
 	
 		assertEquals(2000, vueloNormal.getPrecio(),0.1);
 	}
@@ -69,7 +78,8 @@ public class TestPoliticaPreciosDeVuelo {
 	public void porciento25PorSerRemateYTenerMasDe30AsientosLibre(){
 		vueloNormal.setPoliticaDePrecio(new PoliticaRemate(2000));
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(80);
+		//pasaje.setAgregarPasajesAlVuelo(80);
+		this.setPasajesAlVuelo(vueloNormal, 80);
 		
 		assertEquals(1500, vueloNormal.getPrecio(),0.1);
 	}
@@ -78,7 +88,8 @@ public class TestPoliticaPreciosDeVuelo {
 	public void porciento50PorSerRemateYTenerMasDe30AsientosLibre(){
 		vueloNormal.setPoliticaDePrecio(new PoliticaRemate(2000));
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(195);
+		//pasaje.setAgregarPasajesAlVuelo(195);
+		this.setPasajesAlVuelo(vueloNormal, 195);
 		
 		assertEquals(1000, vueloNormal.getPrecio(),0.1);
 	}

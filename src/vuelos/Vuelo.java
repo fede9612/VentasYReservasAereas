@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-import javax.xml.crypto.Data;
 
 import asociacionInternacionalTransporteAereo.IATA;
 import avion.Avion;
@@ -24,8 +23,7 @@ public abstract class Vuelo {
 	private Collection<Venta> ventas = new HashSet<>();
 	private double distanciaDelVueloKM;
 	private LocalDate fecha;
-	private Destino destino;
-	private Origen origen;
+	private Ciudad ciudad;
 	
 	public Vuelo(Avion avion){
 		this.avion = avion;
@@ -52,15 +50,21 @@ public abstract class Vuelo {
 	}
 	
 	public boolean getEsRelajado(){
-		return (this.getAvion().getAlturaDeCabina() > 4) && (this.getAvion().getCantAsientos() < 100);
+		return (this.getAvion().getAlturaDeCabina() > 4) && (this.getCantAsientos() < 100);
 	}
 	
+	public abstract int getCantAsientos();
+
 	public Criterio getCriterio(){
-		return this.getOrigen().getCriterio().orElse(this.empresa.getCriterio());
+		return this.getCiudad().getCriterio().orElse(this.empresa.getCriterio());
 	}
 	
 	public boolean getPuedeVenderse(){
-		return this.getCriterio().getPuedeVenderPasajes(this);
+		if(this.getCriterio().getPuedeVenderPasajes(this)){
+			return true;
+		}else{
+			throw new RuntimeException("El vuelo no se puede vender");
+		}
 		
 	}
 	
@@ -70,7 +74,7 @@ public abstract class Vuelo {
 	
 	public abstract int getCantDeAsientosLibres();
 
-	public void setVentas(Venta venta) {
+	public void addVentas(Venta venta) {
 		this.ventas.add(venta);
 	}
 	
@@ -86,7 +90,7 @@ public abstract class Vuelo {
 	}
 
 	private double getPesoDeLaNafta() {
-		return this.getDistanciaDelVueloKM();
+		return this.getDistanciaDelVueloKM() * this.getAvion().getConsumoNafta();
 	}
 
 	public double getCantDePasajeros() {
@@ -116,20 +120,12 @@ public abstract class Vuelo {
 		return this.ventas.stream().anyMatch(p -> p.getDni() == pasajero.getDni());
 	}
 	
-	public Destino getDestino() {
-		return destino;
+	public Ciudad getDestino() {
+		return ciudad;
 	}
 
-	public void setDestino(Destino destino) {
-		this.destino = destino;
-	}
-
-	public Origen getOrigen() {
-		return origen;
-	}
-
-	public void setOrigen(Origen origen) {
-		this.origen = origen;
+	public void setDestino(Ciudad ciudad) {
+		this.ciudad = ciudad;
 	}
 	
 	public double getMontoEfectivamenteCobrado(){
@@ -142,6 +138,14 @@ public abstract class Vuelo {
 	
 	private Collection<Venta> pasajesCompradosPorPasajero(Pasajero pasajero){
 		return this.ventas.stream().filter(v -> v.getDni() == pasajero.getDni()).collect(Collectors.toSet());
+	}
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
 	}
 	
 }

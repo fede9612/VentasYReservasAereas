@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import avion.Avion;
-import criterioDeVentaPasajes.Criterio;
 import criterioDeVentaPasajes.CriterioLaxa;
 import criterioDeVentaPasajes.CriterioPorcentaje;
 import criterioDeVentaPasajes.CriterioAmenazaTerrorista;
@@ -18,7 +17,7 @@ import pasajeroPersona.Pasajero;
 import politicaPrecioAsientosParaVuelo.PoliticaDePrecio;
 import politicaPrecioAsientosParaVuelo.PoliticaEstricta;
 import ventaDelPasaje.Venta;
-import vuelos.Origen;
+import vuelos.Ciudad;
 import vuelos.Vuelo;
 import vuelos.VueloDeCarga;
 import vuelos.VueloNormal;
@@ -35,8 +34,9 @@ public class TestVuelo {
 	@Before
 	public void setUp(){
 		avionN23 = new Avion(200, 4.5);
+		avionN23.setConsumo(20);
 		vueloNormal = new VueloNormal(avionN23);
-		vueloNormal.setOrigen(Origen.BsAs);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 	}
 	
 	@Test
@@ -50,8 +50,8 @@ public class TestVuelo {
 	public void vueloNormalTieneAsientosLibres30(){
 		VueloNormal vueloNormal = new VueloNormal(avionN23);
 		Pasaje pasajes = new Pasaje(vueloNormal);// cargar 170 pasajes, hacer un repeat de n veces(la cnatidad de pasajes en este caso 170
-		pasajes.setAgregarPasajesAlVuelo(170);	//hacerlo en el pasajes, pasaje.setCantAsientos(cantidad).
-		
+		//pasajes.setAgregarPasajesAlVuelo(170);	//hacerlo en el pasajes, pasaje.setCantAsientos(cantidad).
+		this.setPasajesAlVuelo(vueloNormal, 170);
 		assertEquals(30, vueloNormal.getCantDeAsientosLibres());
 		
 	}
@@ -67,6 +67,8 @@ public class TestVuelo {
 		assertEquals(0, vueloDeCarga.getCantDeAsientosLibres());
 	}
 
+	//Este metodo lo pudiera haber hecho con el for que arme, nada mas que lo deje para que veas que implementaba
+	//Metodos en el test
 	private void cargarVueloDeCargaCon30Pasajes(VueloDeCarga vueloDeCarga) {
 		Pasaje pasaje1 = new Pasaje(vueloDeCarga);
 		Pasaje pasaje2 = new Pasaje(vueloDeCarga);
@@ -125,40 +127,55 @@ public class TestVuelo {
 	}
 	
 	@Test
+	public void vueloDeCargaEsRelajadoPorqueTiene30Asientos(){
+		Vuelo vueloDeCarga = new VueloDeCarga(avionN23);
+		
+		assertTrue(vueloDeCarga.getEsRelajado());
+	}
+	
+	@Test
 	public void sePuedeVenderVueloConCriterioSeguraConTodosLosAsientosDisponible(){
 		assertTrue(vueloNormal.getPuedeVenderse());
 	}
 	
-	@Test
+	@Test (expected = RuntimeException.class)
 	public void noSePuedeVenderVueloConCriterioSeguraCon1AsientoDisponible(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioSegura());
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(199);
-		vueloNormal.setOrigen(Origen.BsAs);
+		this.setPasajesAlVuelo(vueloNormal,199);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		
-		assertFalse(vueloNormal.getPuedeVenderse());
+		//assertFalse(vueloNormal.getPuedeVenderse());
 	}
 	
+	private void setPasajesAlVuelo(Vuelo vuelo, int n) {
+		for(int i=1;i<n;i++){
+			vuelo.setCantDePasajesVendidos();
+		}
+	}
+
 	@Test
 	public void sePuedeVenderVueloConCriterioLaxaConTodosLosAsientosOcupadosMas5(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioLaxa());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(205);
-		vueloNormal.setOrigen(Origen.BsAs);
+		//pasaje.setAgregarPasajesAlVuelo(205);
+		this.setPasajesAlVuelo(vueloNormal, 205);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		
 		assertTrue(vueloNormal.getPuedeVenderse());
 	}
 	
-	@Test
+	@Test (expected = RuntimeException.class) 
 	public void noSePuedeVenderVueloConCriterioLaxaConTodosLosAsientosOcupadosMas10(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioLaxa());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(210);
-		vueloNormal.setOrigen(Origen.BsAs);
+		//pasaje.setAgregarPasajesAlVuelo(210);
+		this.setPasajesAlVuelo(vueloNormal, 210);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		
-		assertFalse(vueloNormal.getPuedeVenderse());
+		//assertFalse(vueloNormal.getPuedeVenderse());
 	}
 
 	//HacerTestDeNoSePuedeVenderVueloConCriterioAmenazaTerrorista
@@ -166,18 +183,22 @@ public class TestVuelo {
 	public void NoSePuedeVenderVueloConCriterioAmenazaTerrorista(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioAmenazaTerrorista());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
-		vueloNormal.setOrigen(Origen.BsAs);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		vueloNormal.getPuedeVenderse();
 	}
 	
 	//HacerTestDeSePuedeVenderConCriterioDePorcentaje
+	@Test
 	public void sePuedeVenderConCriterioDePorcentajeCon200AsientosDisponibles(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioPorcentaje());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(200);
+		//pasaje.setAgregarPasajesAlVuelo(199);
+		this.setPasajesAlVuelo(vueloNormal, 199);
 		
 		assertTrue(vueloNormal.getPuedeVenderse());
+		//assertEquals(202, Empresa.empresaUnica().getCriterio().getCantDePasajesQueSePuedenVender(vueloNormal),0.1);
 	}
 
 	//HacerTestDeNoSePuedeVenderConCriterioDePorcentaje
@@ -185,7 +206,8 @@ public class TestVuelo {
 		Empresa.empresaUnica().cambiarCriterio(new CriterioPorcentaje());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
 		Pasaje pasaje = new Pasaje(vueloNormal);
-		pasaje.setAgregarPasajesAlVuelo(202);
+		//pasaje.setAgregarPasajesAlVuelo(202);
+		this.setPasajesAlVuelo(vueloNormal, 202);
 		
 		assertFalse(vueloNormal.getPuedeVenderse());
 	}
@@ -193,7 +215,7 @@ public class TestVuelo {
 	//Punto 6
 	@Test
 	public void vueloCon400MilPesosGeneradoPorLasVentas(){
-		Empresa.empresaUnica().cambiarCriterio(new CriterioSegura());
+		Empresa.empresaUnica().cambiarCriterio(new CriterioLaxa());
 		PoliticaDePrecio politicaPrecio = new PoliticaEstricta(2000);
 		vueloNormal.setPoliticaDePrecio(politicaPrecio);
 		for(int i = 0; i < 200; i++){
@@ -205,23 +227,27 @@ public class TestVuelo {
 	
 	//Punto 7
 	@Test
-	public void pesoDeUnAvion20000PesoPasajeros15000Nafta28000Equipamiento300(){
+	public void pesoDeUnAvion20000PesoPasajeros1800Nafta28000Equipamiento300(){
 		avionN23.setPeso(20000);
+		avionN23.setConsumo(25);
 		Pasaje pasajes = new Pasaje(vueloNormal);
-		pasajes.setAgregarPasajesAlVuelo(200);
-		vueloNormal.setDistanciaDelVueloKM(28000);
-		//20000 + (200 * 75) + 0(peso de carga en este caso no tiene) + 28000(nafta) + 300(equipamiento regammentario) 
-		assertEquals(63300, vueloNormal.getPesoMaximo(),0.1);
+		//pasajes.setAgregarPasajesAlVuelo(200);
+		this.setPasajesAlVuelo(vueloNormal, 200);
+		vueloNormal.setDistanciaDelVueloKM(1800);
+		
+		assertEquals(80300, vueloNormal.getPesoMaximo(),0.1);
 	}
 	
 	@Test
-	public void pesoMaximoDeUnVueloDeCargaAvion20000Carga10000Equipamiento300EquipamientoCarga700Nafta15000(){
+	public void pesoMaximoDeUnVueloDeCargaAvion20000Carga21Pesonas10kgEquipamiento300EquipamientoCarga700Nafta1500(){
+		Empresa.empresaUnica().setPesoMaximoCarga(10);
 		avionN23.setPeso(20000);
+		avionN23.setConsumo(20);
 		VueloDeCarga vueloDeCarga = new VueloDeCarga(avionN23);
-		vueloDeCarga.setPesoDeCarga(10000);
-		vueloDeCarga.setDistanciaDelVueloKM(15000);
+		vueloDeCarga.setDistanciaDelVueloKM(1500);
+		this.setPasajesAlVuelo(vueloDeCarga, 21);
 		
-		assertEquals(46000, vueloDeCarga.getPesoMaximo(),0.1);
+		assertEquals(52700, vueloDeCarga.getPesoMaximo(),0.1);
 	}
 	
 }

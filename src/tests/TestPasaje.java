@@ -12,7 +12,7 @@ import exeption.ExeptionDeAmenazaTerrorista;
 import pasaje.Pasaje;
 import pasajeroPersona.Pasajero;
 import ventaDelPasaje.Venta;
-import vuelos.Origen;
+import vuelos.Ciudad;
 import vuelos.VueloNormal;
 
 public class TestPasaje {
@@ -33,7 +33,7 @@ public class TestPasaje {
 		Empresa.empresaUnica().cambiarCriterio(new CriterioAmenazaTerrorista());
 		Pasaje pasaje1 = new Pasaje(vueloNormal);
 		Pasajero matias = new Pasajero(39146980);
-		vueloNormal.setOrigen(Origen.BsAs);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		Venta venta1 = new Venta(vueloNormal, pasaje1, matias);
 		
 	}

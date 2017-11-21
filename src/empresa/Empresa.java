@@ -1,20 +1,15 @@
 package empresa;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import criterioDeVentaPasajes.Criterio;
-import criterioDeVentaPasajes.CriterioAmenazaTerrorista;
-import vuelos.Vuelo;
 
 public class Empresa {
-	private static Criterio criterioDeVuelo;
+	private Criterio criterioDeVuelo;
 	private static Empresa empresaUnica = new Empresa();
+	private double pesoMaximoCarga;
 	
-	private List<Vuelo> vuelos = new ArrayList<>();
-	
-	public static Criterio getCriterio(){
-		return criterioDeVuelo;
+	public Criterio getCriterio(){
+		return this.criterioDeVuelo;
 	}
 	
 	public static Empresa empresaUnica(){
@@ -23,6 +18,14 @@ public class Empresa {
 
 	public void cambiarCriterio(Criterio criterio) {
 		this.criterioDeVuelo = criterio;
+	}
+
+	public double getPesoMaximoDeCargaPorPersona() {
+		return this.pesoMaximoCarga;
+	}
+
+	public void setPesoMaximoCarga(double pesoMaximoCarga) {
+		this.pesoMaximoCarga = pesoMaximoCarga;
 	}
 	
 }

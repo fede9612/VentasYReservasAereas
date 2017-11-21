@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import pasaje.Pasaje;
 import pasajeroPersona.Pasajero;
-import vuelos.Destino;
+import vuelos.Ciudad;
 import vuelos.Vuelo;
 
 public class Venta {
@@ -24,7 +24,7 @@ public class Venta {
 		this.vuelo = vuelo;
 		this.precioDelPasaje = vuelo.getPrecio();
 		this.pasajero = pasajero;
-		this.vuelo.setVentas(this); //Cada vez que se instacie una venta, se suma a la lista de ventas del vuelo
+		this.vuelo.addVentas(this); //Cada vez que se instacie una venta, se suma a la lista de ventas del vuelo
 		this.fechaDelVuelo = this.getVuelo().getFechaDelViaje();
 	}
 	
@@ -64,7 +64,7 @@ public class Venta {
 		return this.fechaDelVuelo;
 	}
 	
-	public Destino getDestino(){
+	public Ciudad getDestino(){
 		return this.vuelo.getDestino();
 	}
 	

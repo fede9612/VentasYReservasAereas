@@ -3,23 +3,23 @@ package asociacionInternacionalTransporteAereo;
 public class IATA {
 	
 	private static IATA iata = new IATA();
-	private static double pesoStandarPersona = 75;
-	private static double pesoEquipamientoReglamentario = 300;
+	private double pesoStandarPersona = 75;
+	private double pesoEquipamientoReglamentario = 300;
 
-	public static double getPesoStandarPersona() {
-		return pesoStandarPersona;
+	public double getPesoStandarPersona() {
+		return this.pesoStandarPersona;
 	}
 	
 	public static IATA iata(){
 		return iata;
 	}
 
-	public static void setPesoStandarPersona(double pesoStandarPersona) {
-		IATA.pesoStandarPersona = pesoStandarPersona;
+	public void setPesoStandarPersona(double pesoStandarPersona) {
+		this.pesoStandarPersona = pesoStandarPersona;
 	}
 
-	public static double getPesoEquipamientoReglamentario() {
-		return pesoEquipamientoReglamentario;
+	public double getPesoEquipamientoReglamentario() {
+		return this.pesoEquipamientoReglamentario;
 	}
 	
 	

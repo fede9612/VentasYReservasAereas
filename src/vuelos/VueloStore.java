@@ -25,16 +25,16 @@ public class VueloStore {
 		this.vuelos.add(vuelo);
 	}
 	
-	public Collection<LocalDate> getFechasDeDestinoParaUnaPersonaTodosLosVuelos(Pasajero pasajero, Destino destino){
-		return this.getPersonaViajaEnVueloSegunDestino(pasajero, destino).stream().map(v -> v.getFechaDelViaje()).collect(Collectors.toSet());
+	public Collection<LocalDate> getFechasDeDestinoParaUnaPersonaTodosLosVuelos(Pasajero pasajero, Ciudad ciudad){
+		return this.getPersonaViajaEnVueloSegunDestino(pasajero, ciudad).stream().map(v -> v.getFechaDelViaje()).collect(Collectors.toSet());
 	}
 	
-	private Collection<Vuelo> getPersonaViajaEnVueloSegunDestino(Pasajero pasajero, Destino destino){
-		return this.getDestinoDelVueloEs(destino).stream().filter(v -> v.estePasajeroPerteneceAlVuelo(pasajero)).collect(Collectors.toSet());
+	private Collection<Vuelo> getPersonaViajaEnVueloSegunDestino(Pasajero pasajero, Ciudad ciudad){
+		return this.getDestinoDelVueloEs(ciudad).stream().filter(v -> v.estePasajeroPerteneceAlVuelo(pasajero)).collect(Collectors.toSet());
 	}
 	
-	private Collection<Vuelo> getDestinoDelVueloEs(Destino destino){
-		return this.getVuelos().stream().filter(v -> v.getDestino() == destino).collect(Collectors.toSet());
+	private Collection<Vuelo> getDestinoDelVueloEs(Ciudad ciudad){
+		return this.getVuelos().stream().filter(v -> v.getDestino() == ciudad).collect(Collectors.toSet());
 	}
 	
 	public Boolean getSonCompanieros(Pasajero pasajero1, Pasajero pasajero2){
@@ -51,6 +51,15 @@ public class VueloStore {
 	
 	//Hacer test de esto
 	public Collection<Vuelo> getVueloEntreDosFechas(LocalDate fecha1, LocalDate fecha2){
-		return this.getVuelos().stream().filter(v -> v.getFechaDelViaje().isAfter(fecha1) && fecha2.isAfter(v.getFechaDelViaje())).collect(Collectors.toSet());
+		return this.getVuelos().stream().filter(v -> v.getFechaDelViaje().isAfter(fecha1) && fecha2.isBefore(v.getFechaDelViaje())).collect(Collectors.toSet());
+	}
+	
+	public Collection<Vuelo> getVuelosEntreFechasSegunDestino(LocalDate fecha1, LocalDate fecha2, Ciudad ciudad){
+		return this.getVueloEntreDosFechas(fecha1, fecha2).stream().filter(v -> v.getDestino().equals(ciudad)).collect(Collectors.toSet());
+	}
+	
+	public int getCantidadDeAsientosLibresEntreDosFechas(LocalDate fecha1, LocalDate fecha2, Ciudad ciudad){
+		return this.getVuelosEntreFechasSegunDestino(fecha1, fecha2, ciudad).stream()
+							.mapToInt(v -> v.getCantDeAsientosLibres()).sum();
 	}
 }

@@ -2,7 +2,6 @@ package vuelos;
 
 import asociacionInternacionalTransporteAereo.IATA;
 import avion.Avion;
-import criterioDeVentaPasajes.Criterio;
 
 public class VueloCharter extends Vuelo{
 
@@ -38,6 +37,12 @@ public class VueloCharter extends Vuelo{
 	@Override
 	public double getPesoDeLosPasajeros() {
 		return this.getCantDePasajeros() * IATA.iata().getPesoStandarPersona();
+	}
+
+
+	@Override
+	public int getCantAsientos() {
+		return this.getAvion().getCantAsientos();
 	}
 
 

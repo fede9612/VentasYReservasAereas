@@ -3,24 +3,21 @@ package vuelos;
 import java.util.Optional;
 
 import criterioDeVentaPasajes.Criterio;
-import criterioDeVentaPasajes.CriterioAmenazaTerrorista;
 
-public enum Origen {
-	BsAs, Cordoba(Criterio.AMENAZA);
+public enum Ciudad {
+	Tahiti, Barcelona, LosAngeles, BsAs, Cordoba(Criterio.AMENAZA);
 	
 	private Optional<Criterio> criterio;
 	
-	private Origen(Criterio criterio){
+	private Ciudad(Criterio criterio){
 		this.criterio = Optional.of(criterio);
 	}
 	
-	private Origen(){
+	private Ciudad(){
 		this.criterio = Optional.empty();
 	}
 	
 	public Optional<Criterio> getCriterio(){
 		return this.criterio;
 	}
-	
-	 
 }

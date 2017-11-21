@@ -16,7 +16,7 @@ import pasajeroPersona.Pasajero;
 import politicaPrecioAsientosParaVuelo.PoliticaEstricta;
 import ventaDelPasaje.Pago;
 import ventaDelPasaje.Venta;
-import vuelos.Origen;
+import vuelos.Ciudad;
 import vuelos.Vuelo;
 import vuelos.VueloNormal;
 
@@ -42,7 +42,7 @@ public class TestBonus {
 	@Test
 	public void elCriterioDeLaEmpresaNoCambiaPorqueLaCiudadDeOrigenBsAsNoTieneCriterio() {
 		Criterio criterioOriginal = Empresa.empresaUnica().getCriterio();
-		vueloNormal.setOrigen(Origen.BsAs);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		//Como buenos aires no tiene un criterio, en el vuelo se usa el criterio de la empresa.
 		
 		assertEquals(criterioOriginal, vueloNormal.getCriterio());
@@ -51,7 +51,7 @@ public class TestBonus {
 	@Test
 	public void elCriterioDeLaEmpresaCambiaPorqueLaCiudadDeOrigenCordobaTieneCriterio(){
 		Criterio criterioOriginal = Empresa.empresaUnica().getCriterio();
-		vueloNormal.setOrigen(Origen.Cordoba);
+		vueloNormal.setCiudad(Ciudad.Cordoba);
 		//Como Cordoba tiene criterio, en el vuelo se usa el criterio de la ciudad de origen.
 		
 		assertNotEquals(criterioOriginal, vueloNormal.getCriterio());
@@ -62,7 +62,7 @@ public class TestBonus {
 	
 	@Test
 	public void unaPersonaAbono2CuotasYTieneUnaDeudaDe800pesos(){
-		vueloNormal.setOrigen(Origen.BsAs);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		Venta ventaDelPasaje = new Venta(vueloNormal, pasaje, pasajeroRamon);
 		ventaDelPasaje.setPago(new Pago(1000));
@@ -74,7 +74,7 @@ public class TestBonus {
 	
 	@Test
 	public void unaPersonaQueTiene3PasajesDe2000PesosSacadoYNoPagoNingunoParaUnVuelo(){
-		vueloNormal.setOrigen(Origen.BsAs);
+		vueloNormal.setCiudad(Ciudad.BsAs);
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		Venta ventaDelPasaje = new Venta(vueloNormal, pasaje, pasajeroRamon);
 		Venta ventaDelPasaje2 = new Venta(vueloNormal, new Pasaje(vueloNormal), pasajeroRamon);

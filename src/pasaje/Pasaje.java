@@ -1,9 +1,5 @@
 package pasaje;
 
-import java.util.Collection;
-import java.util.HashSet;
-
-import ventaDelPasaje.Pago;
 import vuelos.Vuelo;
 
 public class Pasaje {
@@ -24,9 +20,9 @@ public class Pasaje {
 	}
 	
 	//Este metodo lo uso solo para los test
-	public void setAgregarPasajesAlVuelo(int n){
-		for(int i=1;i<n;i++){
-			this.getVuelo().setCantDePasajesVendidos();
-		}
-	}
+	//public void setAgregarPasajesAlVuelo(int n){
+		//for(int i=1;i<n;i++){
+			//this.getVuelo().setCantDePasajesVendidos();
+		//}
+	//}
 }
