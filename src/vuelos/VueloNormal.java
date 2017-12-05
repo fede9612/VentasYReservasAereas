@@ -51,5 +51,11 @@ public class VueloNormal extends Vuelo{
 	}
 
 
+	@Override
+	public String getTipo() {
+		return "Normal";
+	}
+
+
 
 }

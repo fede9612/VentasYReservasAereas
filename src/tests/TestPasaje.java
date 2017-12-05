@@ -33,7 +33,7 @@ public class TestPasaje {
 		Empresa.empresaUnica().cambiarCriterio(new CriterioAmenazaTerrorista());
 		Pasaje pasaje1 = new Pasaje(vueloNormal);
 		Pasajero matias = new Pasajero(39146980);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 		Venta venta1 = new Venta(vueloNormal, pasaje1, matias);
 		
 	}

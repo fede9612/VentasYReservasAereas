@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+import org.uqbar.commons.utils.Observable;
 
 import asociacionInternacionalTransporteAereo.IATA;
 import avion.Avion;
@@ -14,6 +15,7 @@ import pasajeroPersona.Pasajero;
 import politicaPrecioAsientosParaVuelo.PoliticaDePrecio;
 import ventaDelPasaje.Venta;
 
+@Observable
 public abstract class Vuelo {
 	
 	private int cantDePasajesVendidos;
@@ -23,7 +25,8 @@ public abstract class Vuelo {
 	private Collection<Venta> ventas = new HashSet<>();
 	private double distanciaDelVueloKM;
 	private LocalDate fecha;
-	private Ciudad ciudad;
+	private Ciudad ciudadDestino;
+	private Ciudad ciudadOrigen;
 	
 	public Vuelo(Avion avion){
 		this.avion = avion;
@@ -56,7 +59,7 @@ public abstract class Vuelo {
 	public abstract int getCantAsientos();
 
 	public Criterio getCriterio(){
-		return this.getCiudad().getCriterio().orElse(this.empresa.getCriterio());
+		return this.getDestino().getCriterio().orElse(this.empresa.getCriterio());
 	}
 	
 	public boolean getPuedeVenderse(){
@@ -121,11 +124,19 @@ public abstract class Vuelo {
 	}
 	
 	public Ciudad getDestino() {
-		return ciudad;
+		return ciudadDestino;
 	}
 
 	public void setDestino(Ciudad ciudad) {
-		this.ciudad = ciudad;
+		this.ciudadDestino = ciudad;
+	}
+	
+	public Ciudad getOrigen() {
+		return ciudadOrigen;
+	}
+
+	public void setOrigen(Ciudad ciudad) {
+		this.ciudadOrigen = ciudad;
 	}
 	
 	public double getMontoEfectivamenteCobrado(){
@@ -140,12 +151,6 @@ public abstract class Vuelo {
 		return this.ventas.stream().filter(v -> v.getDni() == pasajero.getDni()).collect(Collectors.toSet());
 	}
 
-	public Ciudad getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(Ciudad ciudad) {
-		this.ciudad = ciudad;
-	}
+	public abstract String getTipo();
 	
 }

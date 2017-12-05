@@ -42,17 +42,17 @@ public class TestVueloStore {
 		vuelo1 = new VueloNormal(avionN23);
 		vuelo1.setPoliticaDePrecio(new PoliticaEstricta(2000));
 		vuelo1.setFecha(LocalDate.now());
-		vuelo1.setCiudad(Ciudad.BsAs);
+		vuelo1.setDestino(Ciudad.BsAs);
 		
 		vuelo2 = new VueloNormal(avionN23);
 		vuelo2.setPoliticaDePrecio(new PoliticaEstricta(2000));
 		vuelo2.setFecha(LocalDate.now());
-		vuelo2.setCiudad(Ciudad.BsAs);
+		vuelo2.setDestino(Ciudad.BsAs);
 		
 		vuelo3 = new VueloNormal(avionN23);
 		vuelo3.setPoliticaDePrecio(new PoliticaEstricta(2000));
 		vuelo3.setFecha(LocalDate.now());
-		vuelo3.setCiudad(Ciudad.BsAs);
+		vuelo3.setDestino(Ciudad.BsAs);
 		
 		pasajero1 = new Pasajero(39146980);
 		pasajero2 = new Pasajero(39146925);

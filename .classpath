@@ -3,5 +3,43 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/arena-apo-3.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/arena-core-3.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/arena-jface-3.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/arena-poo-3.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/arena-pot-3.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/commands-3.3.0-I20070605-0010.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/common-3.6.200-v20130402-1505.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/commons-lang-2.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/guava-11.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/icu4j-58.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/jface-3.3.0-I20070606-0010.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/jsr305-1.3.9.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.core.commands-3.4.0.I20080509-2000.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.core.databinding.beans-1.1.1.M20080827-0800a.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.core.databinding-1.1.1.M20080827-0800b.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.equinox.common-3.4.0.v20080421-2006.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.jface.databinding-1.2.1.M20080827-0800a.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.jface-3.4.2.M20090107-0800.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.osgi-3.4.3.R34x_v20081215-1030.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.swt.gtk.linux.x86_64-4.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.swt.win32.win32.x86_64-4.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.swt-3.4.2.v3452b.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/org.eclipse.ui.workbench-3.4.2.M20090127-1700.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/oval-1.81.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/reflections-0.9.8.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/scala-library-2.11.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/scala-xml_2.11-1.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/swt-3.3.0-v3346.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/uqbar-domain-3.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/federico/workspace/arena-libraries/libs/xml-apis-1.0.b2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

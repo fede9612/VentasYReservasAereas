@@ -6,8 +6,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.uqbar.commons.utils.Observable;
+
 import pasajeroPersona.Pasajero;
 
+@Observable
 public class VueloStore {
 	private static VueloStore store = new VueloStore();
 	
@@ -61,5 +64,9 @@ public class VueloStore {
 	public int getCantidadDeAsientosLibresEntreDosFechas(LocalDate fecha1, LocalDate fecha2, Ciudad ciudad){
 		return this.getVuelosEntreFechasSegunDestino(fecha1, fecha2, ciudad).stream()
 							.mapToInt(v -> v.getCantDeAsientosLibres()).sum();
+	}
+
+	public void setVuelos(List<Vuelo> vuelos) {
+		this.vuelos = vuelos;
 	}
 }

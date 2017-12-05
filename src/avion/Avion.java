@@ -1,5 +1,8 @@
 package avion;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Avion {
 
 	private int cantAsientos;

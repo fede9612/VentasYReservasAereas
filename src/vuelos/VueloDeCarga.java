@@ -44,4 +44,9 @@ public class VueloDeCarga extends Vuelo{
 		return this.cantDeAsientosLibres;
 	}
 
+	@Override
+	public String getTipo() {
+		return "De carga";
+	}
+
 }

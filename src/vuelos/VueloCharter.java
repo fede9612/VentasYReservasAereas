@@ -46,5 +46,11 @@ public class VueloCharter extends Vuelo{
 	}
 
 
+	@Override
+	public String getTipo() {
+		return "Charter";
+	}
+
+
 
 }

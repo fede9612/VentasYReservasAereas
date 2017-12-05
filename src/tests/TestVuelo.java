@@ -36,7 +36,7 @@ public class TestVuelo {
 		avionN23 = new Avion(200, 4.5);
 		avionN23.setConsumo(20);
 		vueloNormal = new VueloNormal(avionN23);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 	}
 	
 	@Test
@@ -143,7 +143,7 @@ public class TestVuelo {
 		Empresa.empresaUnica().cambiarCriterio(new CriterioSegura());
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		this.setPasajesAlVuelo(vueloNormal,199);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 		
 		//assertFalse(vueloNormal.getPuedeVenderse());
 	}
@@ -161,7 +161,7 @@ public class TestVuelo {
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		//pasaje.setAgregarPasajesAlVuelo(205);
 		this.setPasajesAlVuelo(vueloNormal, 205);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 		
 		assertTrue(vueloNormal.getPuedeVenderse());
 	}
@@ -173,7 +173,7 @@ public class TestVuelo {
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		//pasaje.setAgregarPasajesAlVuelo(210);
 		this.setPasajesAlVuelo(vueloNormal, 210);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 		
 		//assertFalse(vueloNormal.getPuedeVenderse());
 	}
@@ -183,7 +183,7 @@ public class TestVuelo {
 	public void NoSePuedeVenderVueloConCriterioAmenazaTerrorista(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioAmenazaTerrorista());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 		vueloNormal.getPuedeVenderse();
 	}
 	
@@ -192,7 +192,7 @@ public class TestVuelo {
 	public void sePuedeVenderConCriterioDePorcentajeCon200AsientosDisponibles(){
 		Empresa.empresaUnica().cambiarCriterio(new CriterioPorcentaje());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
-		vueloNormal.setCiudad(Ciudad.BsAs);
+		vueloNormal.setDestino(Ciudad.BsAs);
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		//pasaje.setAgregarPasajesAlVuelo(199);
 		this.setPasajesAlVuelo(vueloNormal, 199);
