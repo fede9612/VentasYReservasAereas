@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import org.apache.commons.beanutils.converters.StringConverter;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -135,7 +136,7 @@ public class TestVuelo {
 	
 	@Test
 	public void sePuedeVenderVueloConCriterioSeguraConTodosLosAsientosDisponible(){
-		assertTrue(vueloNormal.getPuedeVenderse());
+		assertTrue(vueloNormal.verificarDisponibilidad());
 	}
 	
 	@Test (expected = RuntimeException.class)
@@ -145,7 +146,7 @@ public class TestVuelo {
 		this.setPasajesAlVuelo(vueloNormal,199);
 		vueloNormal.setDestino(Ciudad.BsAs);
 		
-		//assertFalse(vueloNormal.getPuedeVenderse());
+		vueloNormal.verificarDisponibilidad();
 	}
 	
 	private void setPasajesAlVuelo(Vuelo vuelo, int n) {
@@ -163,7 +164,7 @@ public class TestVuelo {
 		this.setPasajesAlVuelo(vueloNormal, 205);
 		vueloNormal.setDestino(Ciudad.BsAs);
 		
-		assertTrue(vueloNormal.getPuedeVenderse());
+		assertTrue(vueloNormal.verificarDisponibilidad());
 	}
 	
 	@Test (expected = RuntimeException.class) 
@@ -175,7 +176,7 @@ public class TestVuelo {
 		this.setPasajesAlVuelo(vueloNormal, 210);
 		vueloNormal.setDestino(Ciudad.BsAs);
 		
-		//assertFalse(vueloNormal.getPuedeVenderse());
+		assertFalse(vueloNormal.verificarDisponibilidad());
 	}
 
 	//HacerTestDeNoSePuedeVenderVueloConCriterioAmenazaTerrorista
@@ -184,7 +185,7 @@ public class TestVuelo {
 		Empresa.empresaUnica().cambiarCriterio(new CriterioAmenazaTerrorista());
 		Vuelo vueloNormal = new VueloNormal(avionN23);
 		vueloNormal.setDestino(Ciudad.BsAs);
-		vueloNormal.getPuedeVenderse();
+		vueloNormal.verificarDisponibilidad();
 	}
 	
 	//HacerTestDeSePuedeVenderConCriterioDePorcentaje
@@ -197,7 +198,7 @@ public class TestVuelo {
 		//pasaje.setAgregarPasajesAlVuelo(199);
 		this.setPasajesAlVuelo(vueloNormal, 199);
 		
-		assertTrue(vueloNormal.getPuedeVenderse());
+		assertTrue(vueloNormal.verificarDisponibilidad());
 		//assertEquals(202, Empresa.empresaUnica().getCriterio().getCantDePasajesQueSePuedenVender(vueloNormal),0.1);
 	}
 
@@ -209,7 +210,7 @@ public class TestVuelo {
 		//pasaje.setAgregarPasajesAlVuelo(202);
 		this.setPasajesAlVuelo(vueloNormal, 202);
 		
-		assertFalse(vueloNormal.getPuedeVenderse());
+		assertFalse(vueloNormal.verificarDisponibilidad());
 	}
 	
 	//Punto 6
@@ -219,7 +220,7 @@ public class TestVuelo {
 		PoliticaDePrecio politicaPrecio = new PoliticaEstricta(2000);
 		vueloNormal.setPoliticaDePrecio(politicaPrecio);
 		for(int i = 0; i < 200; i++){
-			Venta venta = new Venta(vueloNormal, new Pasaje(vueloNormal), new Pasajero(39146980 + i));
+			Venta venta = new Venta(vueloNormal, new Pasaje(vueloNormal), new Pasajero(Integer.toString(39146980 + i)));
 		}
 		
 		assertEquals(400000, vueloNormal.getImporteTotalGeneradoPorVentas(),0.11);

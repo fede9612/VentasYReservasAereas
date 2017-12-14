@@ -7,7 +7,12 @@ import avion.Avion;
 public class VueloNormal extends Vuelo{
 	
 	private double kgDeCargaPorPasajero;
-	
+
+	public VueloNormal(){
+		super();
+
+	}
+
 	public VueloNormal(Avion avion){
 		super(avion);
 	}

@@ -31,7 +31,11 @@ public abstract class Vuelo {
 	public Vuelo(Avion avion){
 		this.avion = avion;
 	}
-	
+
+	public Vuelo() {
+
+	}
+
 	public void setPoliticaDePrecio(PoliticaDePrecio poli){
 		this.politicaDePrecio = poli;
 	}
@@ -62,7 +66,7 @@ public abstract class Vuelo {
 		return this.getDestino().getCriterio().orElse(this.empresa.getCriterio());
 	}
 	
-	public boolean getPuedeVenderse(){
+	public boolean verificarDisponibilidad(){
 		if(this.getCriterio().getPuedeVenderPasajes(this)){
 			return true;
 		}else{
@@ -151,6 +155,18 @@ public abstract class Vuelo {
 		return this.ventas.stream().filter(v -> v.getDni() == pasajero.getDni()).collect(Collectors.toSet());
 	}
 
+	public Collection<Pasajero> getPasajerosDelVuelo(){
+		return this.ventas.stream().map(p -> p.getPasajero()).collect(Collectors.toSet());
+	}
+
 	public abstract String getTipo();
+
+	public Collection<Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(Collection<Venta> ventas) {
+		this.ventas = ventas;
+	}
 	
 }

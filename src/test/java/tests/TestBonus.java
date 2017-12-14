@@ -34,7 +34,7 @@ public class TestBonus {
 		vueloNormal.setPoliticaDePrecio(new PoliticaEstricta(2000));
 		vueloNormal.setFecha(LocalDate.now());
 		
-		pasajeroRamon = new Pasajero(45898753);
+		pasajeroRamon = new Pasajero("45898753");
 	}
 	
 	//Punto 1 del bonus
@@ -65,8 +65,8 @@ public class TestBonus {
 		vueloNormal.setDestino(Ciudad.BsAs);
 		Pasaje pasaje = new Pasaje(vueloNormal);
 		Venta ventaDelPasaje = new Venta(vueloNormal, pasaje, pasajeroRamon);
-		ventaDelPasaje.setPago(new Pago(1000));
-		ventaDelPasaje.setPago(new Pago(200));
+		ventaDelPasaje.agregarPago(new Pago(1000));
+		ventaDelPasaje.agregarPago(new Pago(200));
 		
 		assertEquals(800, ventaDelPasaje.getDeudaDeUnaPersona(),0.0);
 	}

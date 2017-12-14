@@ -54,8 +54,8 @@ public class TestVueloStore {
 		vuelo3.setFecha(LocalDate.now());
 		vuelo3.setDestino(Ciudad.BsAs);
 		
-		pasajero1 = new Pasajero(39146980);
-		pasajero2 = new Pasajero(39146925);
+		pasajero1 = new Pasajero("39146980");
+		pasajero2 = new Pasajero("39146925");
 	}
 	
 	@Test

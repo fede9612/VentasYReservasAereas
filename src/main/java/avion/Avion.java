@@ -9,6 +9,7 @@ public class Avion {
 	private double alturaDeCabina;
 	private double peso;
 	private double consumo;
+	private String nombre;
 
 	public Avion(int asientos, double alturaCabina){
 		this.cantAsientos = asientos;
@@ -38,5 +39,9 @@ public class Avion {
 	public void setConsumo(double consumo) {
 		this.consumo = consumo;
 	}
+
+	public String getNombre() { return nombre; }
+
+	public void setNombre(String nombre) { this.nombre = nombre; }
 	
 }

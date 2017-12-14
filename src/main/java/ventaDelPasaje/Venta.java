@@ -4,31 +4,40 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.uqbar.commons.utils.Observable;
 import pasaje.Pasaje;
 import pasajeroPersona.Pasajero;
 import vuelos.Ciudad;
 import vuelos.Vuelo;
 
+@Observable
 public class Venta {
 	private Pasaje pasaje;
 	private Vuelo vuelo;
 	private double precioDelPasaje;
 	private LocalDate fechaDelVuelo;
 	private Pasajero pasajero;
-	private Collection<Pago> pagos = new HashSet<>();
-	
-	
+
+	public void setPagos(Collection<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	private Collection<Pago> pagos;
+
+
 	public Venta(Vuelo vuelo, Pasaje pasaje, Pasajero pasajero){
-		vuelo.getPuedeVenderse();
+		vuelo.verificarDisponibilidad();
+		this.pagos = new HashSet<>();
 		this.pasaje = pasaje;
 		this.vuelo = vuelo;
 		this.precioDelPasaje = vuelo.getPrecio();
 		this.pasajero = pasajero;
 		this.vuelo.addVentas(this); //Cada vez que se instacie una venta, se suma a la lista de ventas del vuelo
 		this.fechaDelVuelo = this.getVuelo().getFechaDelViaje();
+
 	}
 	
-	public void setPago(Pago pago){
+	public void agregarPago(Pago pago){
 		this.pagos.add(pago);
 	}
 	
@@ -56,7 +65,7 @@ public class Venta {
 		return this.precioDelPasaje;
 	}
 
-	public int getDni() {
+	public String getDni() {
 		return this.pasajero.getDni();
 	}
 
@@ -67,5 +76,8 @@ public class Venta {
 	public Ciudad getDestino(){
 		return this.vuelo.getDestino();
 	}
-	
+
+	public Pasajero getPasajero() {
+		return pasajero;
+	}
 }
