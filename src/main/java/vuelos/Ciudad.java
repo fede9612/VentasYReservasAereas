@@ -14,11 +14,13 @@ public enum Ciudad {
 	private Ciudad(Criterio criterio, String nombre){
 		this.criterio = Optional.of(criterio);
 		this.nombre = nombre;
+		CiudadStore.store().setCiudades(this);
 	}
 	
 	private Ciudad(String nombre){
 		this.criterio = Optional.empty();
 		this.nombre = nombre;
+		CiudadStore.store().setCiudades(this);
 	}
 	
 	public Optional<Criterio> getCriterio(){
