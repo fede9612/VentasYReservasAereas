@@ -32,9 +32,8 @@ public class Venta {
 		this.vuelo = vuelo;
 		this.precioDelPasaje = vuelo.getPrecio();
 		this.pasajero = pasajero;
-		this.vuelo.addVentas(this); //Cada vez que se instacie una venta, se suma a la lista de ventas del vuelo
 		this.fechaDelVuelo = this.getVuelo().getFechaDelViaje();
-
+		this.vuelo.addVentas(this); //Cada vez que se instacie una venta, se suma a la lista de ventas del vuelo
 	}
 	
 	public void agregarPago(Pago pago){
