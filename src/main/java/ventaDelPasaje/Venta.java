@@ -16,6 +16,7 @@ public class Venta {
 	private Vuelo vuelo;
 	private double precioDelPasaje;
 	private LocalDate fechaDelVuelo;
+	private LocalDate fechaDeCompra;
 	private Pasajero pasajero;
 
 	public void setPagos(Collection<Pago> pagos) {
@@ -45,7 +46,7 @@ public class Venta {
 	}
 	
 	public double getTotalDePagos(){
-		return 0 + this.pagos.stream().mapToDouble(p -> p.getMonto()).sum();
+		return 0 + this.pagos.stream().mapToDouble(p -> p.getMontoDelPago()).sum();
 	}
 	
 	public double getDeudaDeUnaPersona(){
@@ -78,5 +79,13 @@ public class Venta {
 
 	public Pasajero getPasajero() {
 		return pasajero;
+	}
+
+	public LocalDate getFechaDeCompra() {
+		return fechaDeCompra;
+	}
+
+	public void setFechaDeCompra(LocalDate fechaDeCompra) {
+		this.fechaDeCompra = fechaDeCompra;
 	}
 }

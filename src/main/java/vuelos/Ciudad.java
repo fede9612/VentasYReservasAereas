@@ -3,7 +3,9 @@ package vuelos;
 import java.util.Optional;
 
 import criterioDeVentaPasajes.Criterio;
+import org.uqbar.commons.utils.Observable;
 
+@Observable
 public enum Ciudad {
 	Tahiti("Tahiti"), Barcelona("Barcelona"), LosAngeles("Los Angeles"), BsAs("Buenos Aires"),
 	Cordoba(Criterio.AMENAZA, "Cordoba");
