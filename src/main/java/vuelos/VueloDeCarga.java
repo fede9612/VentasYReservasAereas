@@ -12,6 +12,8 @@ public class VueloDeCarga extends Vuelo{
 		super(avion);
 	}
 
+	public VueloDeCarga(){}
+
 	public int getCantDeAsientosLibres() {
 		return this.cantDeAsientosLibres - this.getCantDeAsientosOcupados();
 	}

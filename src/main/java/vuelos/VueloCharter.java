@@ -11,6 +11,10 @@ public class VueloCharter extends Vuelo{
 		super(avion);
 		this.cantPasajeros = cantPasajeros;
 	}
+
+	public VueloCharter(){
+
+	}
 	
 	
 	public int getCantPasajeros(){

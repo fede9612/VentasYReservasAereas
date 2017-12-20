@@ -36,6 +36,15 @@ public abstract class Vuelo {
 
 	}
 
+	public String getPuedeVenderse(){
+		if(this.getCriterio().getPuedeVenderPasajes(this)){
+			return "Si";
+		}
+		else{
+			return "No";
+		}
+	}
+
 	public void setPoliticaDePrecio(PoliticaDePrecio poli){
 		this.politicaDePrecio = poli;
 	}
